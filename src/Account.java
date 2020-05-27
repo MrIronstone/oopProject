@@ -5,9 +5,6 @@ public class Account {
     private double accountNumber;
     private String IbanNumber;
     private static int accountCounter=0;
-    // deneme değişikliği yapıldı
-
-
 
     public Account(int balance,
                    int minimumBalanceLimit,
@@ -18,7 +15,6 @@ public class Account {
         this.accountNumber=accountNumber;
         this.IbanNumber=IbanNumber;
         this.accountCounter++;
-        User.setAccountCounter(getAccountCounter()+1);
     }
 
     public int getAccountCounter() {

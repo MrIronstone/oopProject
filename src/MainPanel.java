@@ -7,16 +7,32 @@ public class MainPanel{
     static User[] customers = new User[100];
     static User currentUser;
 
-    static void addAccount(int balance,
-                           int minimumBalanceLimit,
-                           double accountNumber,
-                           String IbanNumber){
+    static void addAccount(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter your balance");
+        int balance = input.nextInt();
+        System.out.println("Please enter your minimum balance limit");
+        int minimumBalanceLimit = input.nextInt();
+        System.out.println("Please enter your accountNumber");
+        double accountNumber = input.nextDouble();
+        System.out.println("Please enter your IBan Number");
+        String IbanNumber = input.nextLine();
 
+        int nextAccountCounter = currentUser.getAccountCounter()+1;
+        currentUser.getBankAccounts()[nextAccountCounter] = new Account(balance,minimumBalanceLimit,accountNumber,IbanNumber);
 
     }
 
-    static boolean logIn(double customerNumber, double password){
-        for(int i=0; i < customers.length-1; i++){
+    static boolean logIn(){
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter your customer Number");
+        double customerNumber = input.nextDouble();
+        System.out.println("Please enter your password");
+        double password = input.nextDouble();
+
+
+        for(int i=0; i < customers.length-1; i++){ // scans all the array
             if(customerNumber == customers[i].getCustomerNumber()) {
                 if (password == customers[i].getPassword()) {
                     System.out.println("Successfully logged in");
@@ -37,8 +53,27 @@ public class MainPanel{
         return false;
     }
 
-    public static void newUser(String name,String surname,double customerNumber,String emailAddress,
-                        double password, double telephoneNumber){
+    public static void newUser(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter your name");
+        String name = input.nextLine();
+
+        System.out.println("Please enter your surname");
+        String surname = input.nextLine();
+
+        System.out.println("Please enter your customer number");
+        double customerNumber = input.nextDouble();
+
+        System.out.println("Please enter your email address");
+        String emailAddress = input.nextLine();
+
+        System.out.println("Please enter your password");
+        double password = input.nextDouble();
+
+        System.out.println("Please enter your telephone number");
+        double telephoneNumber = input.nextDouble();
+
+
 
         customers[userCounter] = new User(name, surname, customerNumber,
                 emailAddress, password, telephoneNumber);
@@ -47,19 +82,16 @@ public class MainPanel{
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        newUser("Husam","Demirtas",12345,
-                "husamdemirtas1@gmail.com",12345,554947619);
-        System.out.println(customers[0].getName());
-
         System.out.println("1 for log in, 2 for sign up");
         int x = input.nextInt();
         if(x==1){
-            System.out.println("Please enter your customer number");
-            double customerNo, pd;
-            customerNo = input.nextDouble();
-            System.out.println("Please enter your password");
-            pd = input.nextDouble();
-            logIn(customerNo,pd);
+            logIn();
+
+
+        }
+        if (x==2){
+            newUser();
+
         }
 
     }
