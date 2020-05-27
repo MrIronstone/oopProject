@@ -5,13 +5,22 @@ public class MainPanel{
 
     public static int  userCounter=0;
     static User[] customers = new User[100];
+    static User currentUser;
 
+    static void addAccount(int balance,
+                           int minimumBalanceLimit,
+                           double accountNumber,
+                           String IbanNumber){
+
+
+    }
 
     static boolean logIn(double customerNumber, double password){
         for(int i=0; i < customers.length-1; i++){
             if(customerNumber == customers[i].getCustomerNumber()) {
                 if (password == customers[i].getPassword()) {
                     System.out.println("Successfully logged in");
+                    currentUser=customers[i];
                     return true;
                 }
                 else {

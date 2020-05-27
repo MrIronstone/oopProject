@@ -10,6 +10,8 @@ public class User
     private double telephoneNumber;
     private Account[] bankAccounts;
     private CreditCard[] creditCards;
+    private int accountCounter=0;
+    private int creditCardCounter=0;
 
 
     public User(String name, String surname, double customerNumber, String emailAddress,
@@ -91,5 +93,27 @@ public class User
 
     }
 
+    public CreditCard[] getCreditCards() {
+        return creditCards;
+    }
 
+    public void setCreditCards(CreditCard[] creditCards) {
+        this.creditCards = creditCards;
+    }
+
+    public int getAccountCounter() {
+        return accountCounter;
+    }
+
+    public void setAccountCounter(int accountCounter) {
+        this.accountCounter = accountCounter;
+    }
+
+    public int getCreditCardCounter() {
+        return creditCardCounter;
+    }
+
+    public void setCreditCardCounter(int creditCardCounter) {
+        this.creditCardCounter = creditCardCounter;
+    }
 }

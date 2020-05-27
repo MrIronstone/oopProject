@@ -9,12 +9,16 @@ public class Account {
 
 
 
-    public Account(int balance, int minimumBalanceLimit, double accountNumber, String IbanNumber){
+    public Account(int balance,
+                   int minimumBalanceLimit,
+                   double accountNumber,
+                   String IbanNumber){
         this.balance=balance;
         this.minimumBalanceLimit=minimumBalanceLimit;
         this.accountNumber=accountNumber;
         this.IbanNumber=IbanNumber;
         this.accountCounter++;
+        User.setAccountCounter(getAccountCounter()+1);
     }
 
     public int getAccountCounter() {
