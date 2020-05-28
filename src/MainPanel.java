@@ -24,7 +24,7 @@ public class MainPanel{
     }
 
     static boolean logIn(){
-
+        // this method is used by user
         Scanner input = new Scanner(System.in);
         System.out.println("Please enter your customer Number");
         double customerNumber = input.nextDouble();
