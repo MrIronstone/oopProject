@@ -4,7 +4,6 @@ public class CreditCard {
     private double creditCardNumber;
     private int totalDebt;
     private int minimumDebt; // the minimum amount of paying debt
-    private int creditCardCounter=0;
 
     public double getLimit() {
         return limit;
@@ -43,7 +42,7 @@ public class CreditCard {
         this.creditCardNumber=creditCardNumber;
         this.totalDebt=totalDebt;
         this.minimumDebt=minimumDebt;
-        this.creditCardCounter++;
+        MainPanel.currentUser.setCreditCardCounter(MainPanel.currentUser.getCreditCardCounter()+1);
 
     }
     public CreditCard(){

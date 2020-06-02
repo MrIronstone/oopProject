@@ -4,7 +4,6 @@ public class Account {
     private int minimumBalanceLimit;
     private double accountNumber;
     private String IbanNumber;
-    private static int accountCounter=0;
 
     public Account(int balance,
                    int minimumBalanceLimit,
@@ -14,16 +13,10 @@ public class Account {
         this.minimumBalanceLimit=minimumBalanceLimit;
         this.accountNumber=accountNumber;
         this.IbanNumber=IbanNumber;
-        this.accountCounter++;
+        MainPanel.currentUser.setAccountCounter(MainPanel.currentUser.getAccountCounter()+1);
     }
 
-    public int getAccountCounter() {
-        return accountCounter;
-    }
 
-    public void setAccountCounter(int accountCounter) {
-        this.accountCounter = accountCounter;
-    }
 
     public int getBalance() {
         return balance;

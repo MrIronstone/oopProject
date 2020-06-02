@@ -9,29 +9,34 @@ public class MainPanel{
     static User currentUser;
 
     void payDebt(){
+        Account selectedAccount;
+        CreditCard selectedCreditCard;
         System.out.println("Please enter the credit card number you want to pay debt of ");
         double selectedCreditCardNumber = input.nextDouble();
 
-        System.out.println("Please enter your Account number you want to transfer from");
-        int accountNumber= input.nextInt();
+        for(int a=0; a < currentUser.getCreditCards().length; a++){
+            if(currentUser.getCreditCards()[a].getCreditCardNumber()==selectedCreditCardNumber){
+                selectedCreditCard = currentUser.getCreditCards()[a];
 
-        Account selectedAccount = null;
+                System.out.println("Please enter your Account number you want to transfer from");
+                int accountNumber= input.nextInt();
 
-        for(int i = 0 ; i < currentUser.getBankAccounts().length; i++){
-            if(currentUser.getBankAccounts()[i].getAccountNumber()==accountNumber){
-                selectedAccount = currentUser.getBankAccounts()[i];
-            }
-            else {
-                System.out.println("You don't have an account that has this account number");
-            }
-        }
+                for(int i = 0 ; i < currentUser.getBankAccounts().length; i++){
+                    if(currentUser.getBankAccounts()[i].getAccountNumber()==accountNumber){
+                        selectedAccount = currentUser.getBankAccounts()[i];
 
-
-        for(int i=0; i < currentUser.getCreditCards().length ; i++) {
-            if(selectedCreditCardNumber==currentUser.getCreditCards()[i].getCreditCardNumber()){
-                System.out.println("Please enter the amount you want to pay");
-                int amount = input.nextInt();
-                currentUser.getCreditCards()[i].payDebt(amount,selectedAccount);
+                        for(int j=0; j < currentUser.getCreditCards().length ; j++) {
+                            if(selectedCreditCardNumber==currentUser.getCreditCards()[j].getCreditCardNumber()){
+                                System.out.println("Please enter the amount you want to pay");
+                                int amount = input.nextInt();
+                                currentUser.getCreditCards()[j].payDebt(amount,selectedAccount);
+                            }
+                        }
+                    }
+                    else {
+                        System.out.println("You don't have an account that has this account number");
+                    }
+                }
             }
         }
     }
@@ -42,28 +47,27 @@ public class MainPanel{
 
         System.out.println("Please enter your Account number you want to transfer from");
         int accountNumber= input.nextInt();
-
-        Account selectedAccount = null;
-
+        Account selectedAccount;
         for(int i = 0 ; i < currentUser.getBankAccounts().length; i++){
             if(currentUser.getBankAccounts()[i].getAccountNumber()==accountNumber){
                 selectedAccount = currentUser.getBankAccounts()[i];
+
+                System.out.println("Please enter the IBAN number of the  you want to transfer to ");
+                String IBAN = input.nextLine();
+
+                for(int sayac = 0 ; sayac < customers.length-1 ; sayac++){
+                    for( int sayac2= 0; sayac2 < customers[sayac].getBankAccounts().length; sayac2++){
+                        if(customers[sayac].getBankAccounts()[sayac2].getIbanNumber()==IBAN){
+                            selectedAccount.EFT(amount,customers[sayac].getBankAccounts()[sayac2]);
+                        }
+                    }
+                }
             }
             else {
                 System.out.println("You don't have an account that has this account number");
             }
         }
 
-        System.out.println("Please enter the IBAN number of the  you want to transfer to ");
-        String IBAN = input.nextLine();
-
-        for(int sayac = 0 ; sayac < customers.length-1 ; sayac++){
-            for( int sayac2= 0; sayac2 < customers[sayac].getBankAccounts().length; sayac2++){
-                if(customers[sayac].getBankAccounts()[sayac2].getIbanNumber()==IBAN){
-                    selectedAccount.EFT(amount,customers[sayac].getBankAccounts()[sayac2]);
-                }
-            }
-        }
 
     }
 
@@ -83,8 +87,7 @@ public class MainPanel{
         System.out.println("Please enter your IBan Number");
         String IbanNumber = input.nextLine();
 
-        int nextAccountCounter = currentUser.getAccountCounter()+1;
-        currentUser.getBankAccounts()[nextAccountCounter] = new Account(balance,minimumBalanceLimit,accountNumber,IbanNumber);
+        currentUser.getBankAccounts()[currentUser.getAccountCounter()] = new Account(balance,minimumBalanceLimit,accountNumber,IbanNumber);
         System.out.println("Account is created");
 
     }
